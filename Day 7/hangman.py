@@ -5,7 +5,7 @@ import hangman_arts
 placeholder = ""
 game_over = False
 correct_letters = []
-#all_guessed_letters = []
+all_guessed_letters = ""
 lives = 6
 
 print("Welcome to Hangman")
@@ -21,8 +21,9 @@ print(placeholder)
 
 while not game_over:
     guess = input("Guess a letter: ").lower()
-    if guess in correct_letters:
+    if guess in all_guessed_letters:
         print(f"You've already guessed letter: \"{guess}\" Guess another letter: ")
+        print(hangman_arts.stages[lives])
     display = ""
     
     for letter in chosen_word:
@@ -35,19 +36,22 @@ while not game_over:
             display += "_"
             
     print(display)
-    if guess not in chosen_word:
-        lives -= 1
-        print(f"************************ LIFE REMAINIG: {lives} ************************")
-        if lives == 0:
-            game_over = True
-            print(hangman_arts.stages[lives])
-            print("************************ YOU LOSE ************************")
-            print(f"************************ The word is {chosen_word} ************************")
+    if guess not in chosen_word: 
+        if guess not in all_guessed_letters:
+            lives -= 1
+            print(f"************************ LIFE REMAINIG: {lives} ************************")
+            if lives == 0:
+                game_over = True
+                print(hangman_arts.stages[lives])
+                print("************************ YOU LOSE ************************")
+                print(f"************************ The word is {chosen_word} ************************")
+        else:
+            continue
 
     if "_" not in display:
         game_over = True 
         print("************************ YOU WIN ************************.")
 
     print(hangman_arts.stages[lives])
-    #all_guessed_letters = all_guessed_letters.append(guess)
+    all_guessed_letters += guess
 
