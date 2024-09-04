@@ -61,4 +61,4 @@ print(travel_log["France"]["cities_visited"][2])
 # print("\n" * 100) # --> clearing screen
 
 fruits = {"apple":2, "pear": 4, "orange":9}
-print(max(fruits, key=fruits.get))
+print(max(fruits, key=fruits.get)) # --> maksimum'u getirme
