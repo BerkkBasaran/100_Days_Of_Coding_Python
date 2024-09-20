@@ -12,7 +12,7 @@ def format_data(account):
 
 def check_answer(guess, a_followers, b_followers):
     if a_followers > b_followers:
-        return guess == "a"
+        return guess == "a"  # shorter version of writing true false conditions.
     else:
         return guess == "b"
     
@@ -23,7 +23,6 @@ account_b = random.choice(data)
 
 while game_should_continue:
 
-    # Making account at position B become the next account at position A.
     account_a = account_b
     account_b = random.choice(data)
 
@@ -34,22 +33,16 @@ while game_should_continue:
     print(vs)
     print(f"Against B: {format_data(account_b)}.")
 
-    # Ask user for a guess.
     guess = input("Who has more followers? Type 'A' or 'B': ").lower()
 
-    # Clear the screen
     print("\n" * 40)
     print(logo)
 
-    # - Get follower count of each account
     a_follower_count = account_a["follower_count"]
     b_follower_count = account_b["follower_count"]
 
-    # Check if user is correct.
     is_correct = check_answer(guess, a_follower_count, b_follower_count)
 
-    # Give user feedback on their guess.
-    # score keeping.
     if is_correct:
         score += 1
         print(f"You're right! Current score {score}")
